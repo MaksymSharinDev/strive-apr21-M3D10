@@ -1,0 +1,62 @@
+#addCard .card-img-top {
+    min-height: 250px;
+    margin: 1rem;
+    border: 1px solid lightgray;
+    width: auto;
+
+}
+
+#addCard .list-group-item {
+    min-height: 3rem;
+}
+
+#addCard i {
+    color: lightgray;
+    font-size: 100px;
+    transition: font-size ease-in 0.05s;
+}
+
+#addCard i.hover {
+    cursor: pointer;
+    font-size: 150px;
+    color: black;
+    transition: font-size ease-in 0.25s, color ease-in 0.25s;
+
+}
+
+#addCard .collapse {
+    visibility: collapse;
+
+}
+
+#addCard #imageURL {
+    min-width: 275px;
+}
+
+#addCard .img-upload-wrapper.active {
+
+    background: white;
+    padding: 15px;
+    border: solid 1px black;
+    border-radius: 15px;
+    transition: background ease-in 0.35s;
+}
+
+@media screen and (max-width: 520px) {
+    #addCard .img-upload-wrapper {
+        transform: scale(0.8)
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #addCard .img-upload-wrapper {
+        flex-direction: column !important;
+
+    }
+
+    #addCard .img-upload-wrapper form {
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+}

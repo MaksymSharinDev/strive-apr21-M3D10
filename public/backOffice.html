@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Striveflix</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Striveflix</h1>
+    <section id="movieCards"></section>
+    <div class="row">
+        <script type="text/template" id="crudCardTemplate">
+            <div class="col-12 col-sm-12 col-md-6  col-xl-4">
+                <div class="card mb-3" style="max-width: 25%;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="" alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body ">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <div class="col-12 col-sm-12 col-md-6  col-xl-4 g-0">
+            <form id="addCard">
+                <div class="card m-1 mb-3 " style="min-width: 20%;">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                            <img src="" alt="">
+                            <div class="card-img-top d-flex flex-row justify-content-center align-items-center  ">
+                                <div class="img-upload-wrapper d-flex flex-row justify-content-center align-items-center  ">
+                                    <i class=" far fa-image text-size-large mx-1"></i>
+                                    <div class="form-div d-flex d-column align-content-left mx-1 collapse">
+                                        <div class="form-group">
+                                            <label for="imageURL">Image URL</label>
+                                            <input type="text" class="form-control" id="imageURL"
+                                                   placeholder="https://www.your-image-url.png "
+                                            >
+                                            <script></script>
+                                            <small id="imageURLHelp" class="form-text text-muted">Paste with Ctrl-V <br>
+                                                and press Enter</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-center">
+                                    <h5 class="card-title">Create New Movie</h5>
+                                </li>
+                                <li class="list-group-item text-center">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="filmNameInput"
+                                               placeholder="Film name">
+                                        <label for="filmNameInput">Film name</label>
+                                    </div>
+                                </li>
+                                <li class="list-group-item text-center">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="filmDescInput"
+                                               placeholder="Film description">
+                                        <label for="filmNameInput">Film description</label>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item text-center">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="filmCatInput"
+                                               placeholder="Film category">
+                                        <label for="filmNameInput">Film category</label>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item text-center">
+                                    <button type="submit" class="btn bg-primary bg-gradient w-75">Add</button>
+                                </li>
+
+                            </ul>
+                            <div class="card-body p-0">
+
+
+                                <!--
+                               //------------------------------------------------------------------------------------
+                               POST on https://striveschool-api.herokuapp.com/api/movies/
+
+                               creates a new movie.
+
+                               {
+                               "name": "Strive School",
+                               "description": "Horror movie about coding 10 hours per day",
+                               "category": "horror",
+                               "imageUrl": "https://bit.ly/3cMc2IH",
+                               }
+
+                               //------------------------------------------------------------------------------------
+                               -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="deckHook"></div>
+    </div>
+</div>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<!-- Cash -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.0/cash.min.js"></script>
+<!-- Custom Image Picker -->
+<script type="text/javascript" src="src/lib/custom-image-picker.js"></script>
+
+<!-- backOffice page script -->
+<script type="text/javascript" src="src/backOffice.js"></script>
+
+</body>
+</html>
