@@ -61,67 +61,64 @@ module.exports = function (app, db) {
             res.send(e)
         }
     })
+    app.post('/api/movie/categories', async (req, res) => {
+        if (!req.body.access_token === decoyToken) res.send('you need to use my token U.U \n' + decoyToken)
+        try {
+            await fetch(`https://striveschool-api.herokuapp.com/api/movies/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${realToken}`,
+                },
+            })
+                .then(response => response.json())
+                .then(data => res.send(data))
+        } catch (e) {
+            res.send(e)
+        }
+    })
+    app.post('/api/movie/category/:category', async (req, res) => {
+        if (!req.body.access_token === decoyToken) res.send('you need to use my token U.U \n' + decoyToken)
+        try {
+            await fetch(`https://striveschool-api.herokuapp.com/api/movies/${req.params.category}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${realToken}`,
+                },
+            })
+                .then(response => response.json())
+                .then(data => res.send(data))
+        } catch (e) {
+            res.send(e)
+        }
+    })
     /*
-        app.post('/api/product/all', async (req, res) => {
-            if (!req.body.access_token === decoyToken) res.send('you need to use my token U.U \n' + decoyToken)
-            try {
-                await fetch(`https://striveschool-api.herokuapp.com/api/product`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${realToken}`,
-                    },
-                })
-                    .then(response => response.json())
-                    .then(data => res.send(data))
-                //TODO we need to make it persistent also in strive API shutdown
-
-
-                        let original = data;
-                        const obj = {
-                            "_id": '60b04910dc14580015e4ad61',
-                            "name": 'Not Deletable Card ' ,
-                            "description": 'Try',
-                            "brand": 'If you can',
-                            "imageUrl": 'https://i.ibb.co/3Cwd6Tz/081ecb595ed5.jpg',
-                        }
-                        if( ! data.map(obj=> obj._id).contains('60b04910dc14580015e4ad61') ){
-                            original = [...original, obj]
-                        }
-
-                        console.log( original )
-                        return res.send( original )} )
-
-
-            } catch (e) {
-                res.send(e)
-            }
+app.delete('/api/product/:id', async (req, res) => {
+if (!req.body.access_token === decoyToken) res.send('you need to use my token U.U \n' + decoyToken)
+try {
+    if (req.params.id === '60b04910dc14580015e4ad61') {
+        res.send("Nice try dude <3 this is the first thought of everyone :'\)")
+    } else {
+        await fetch(`https://striveschool-api.herokuapp.com/api/product/${req.params.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${realToken}`,
+            },
         })
-        app.delete('/api/product/:id', async (req, res) => {
-            if (!req.body.access_token === decoyToken) res.send('you need to use my token U.U \n' + decoyToken)
-            try {
-                if (req.params.id === '60b04910dc14580015e4ad61') {
-                    res.send("Nice try dude <3 this is the first thought of everyone :'\)")
-                } else {
-                    await fetch(`https://striveschool-api.herokuapp.com/api/product/${req.params.id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${realToken}`,
-                        },
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            res.send(data)
-                        })
-                }
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                res.send(data)
+            })
+    }
 
-            } catch (e) {
-                res.send(e)
-            }
-        })
-        */
+} catch (e) {
+    res.send(e)
+}
+})
+*/
 };
 
 

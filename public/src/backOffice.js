@@ -33,7 +33,31 @@ const api = {
     },
     fetchCardData: (id) => {
     },
-    fetchCardDataAll: () => {
+    fetchCategoryList : async () => {
+        await fetch(`api/movie/categories`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                access_token: pageData['access_token']
+            })
+        }).then(r => r.json()).then(data => pageData.categories = data)
+    },
+    fetchCardDataAll: async () => {
+        await api.fetchCategoryList()
+        for( let category of pageData.categories ){
+            await fetch(`api/movie/category/${category}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    access_token: pageData['access_token']
+                })
+            }).then(r => r.json()).then(data => pageData.movies = [...pageData.movies,...data] )
+        }
+
     },
 
     uploadImage: async (blob) =>
@@ -50,27 +74,27 @@ const api = {
 }
 
 const dom = {
-    loadCardIntoDom: () => {
-        tmpl('crudCardTemplate', pageData.cardData)
+    loadCardIntoDom: (target) => {
+        target.outerHTML = tmpl('crudCardTemplate', pageData )
     },
 }
 
 window.onload = () => {
 
     ;(async function main() {
-        await api.readToken()
         try {
-            let deck = await api.fetchCardDataAll()
-            for (let cardData of deck) {
-                $('deckHook')[0].loadCardIntoDom()
-            }
+            await api.readToken()
+            await api.fetchCardDataAll()
+            //for (let cardData of deck) {
+            dom.loadCardIntoDom( $('#deckHook')[0] )
+            //}
+
 
         } catch (e) {
-
+            console.log(e)
         }
     })().then()
 }
-
 
 document.addEventListener('dragover', e => e.preventDefault())
 const imgUploadWrapper = $('#addCard .img-upload-wrapper')[0]
